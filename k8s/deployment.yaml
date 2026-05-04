@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-journey-app
+spec:
+  replicas: 3 # Chạy 3 bản sao của app cùng lúc để chịu tải
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+      - name: web-container
+        # Thay bằng image trên Docker Hub của bạn (tạo từ Phase 3)
+        image: mchikha/devops-app:latest
+        ports:
+        - containerPort: 3000

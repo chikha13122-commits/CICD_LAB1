@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-journey-service
+spec:
+  type: NodePort # Mở port để truy cập từ trình duyệt ngoài vào
+  selector:
+    app: my-web-app # Tìm các Pod có label này để trỏ traffic vào
+  ports:
+    - port: 80
+      targetPort: 3000
+      nodePort: 30001 # Cổng mà ta sẽ gõ lên trình duyệt
