@@ -1,4 +1,3 @@
-
 name: CI Pipeline
 
 on:
@@ -26,30 +25,5 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
+         tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
 
-on:
- push:
-  branches:
-	- master
-
-jobs:
- build:
-	runs-on: ubuntu-latest
-
-	steps:
-	 - name: Step 1 - pull code to VM
-	 - uses: actions/checkout@v3
-
-	 - name: Step 2 - Login Docker Hub
-	 - uses: docker/login-action@v2
-	   with: 
-		username: ${{ secrets.DOCKERHUB_USERNAME }}
-		password: ${{ secrets.DOCKERHUB_TOKEN }}
-		
-	 - name: Step 3 - Build and push image
-	 - uses: docker/build-push-action@v4
-	   with: 
-		context: . # folder 's Dockerfile
-		push: true
-		tags: ${{ secrets.DOCKERHUB_USERNAME }}/devops-app:latest
